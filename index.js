@@ -35,11 +35,7 @@ app.post('/webhook', (req, res) => {
             // pass the event to the appropriate handler function
             if (webhookEvent.message) {
               handleMessage(sender_psid, webhookEvent.message);
-<<<<<<< HEAD
             } else if (webhook_event.postback) {
-=======
-            } else if (webhookEvent.postback) {
->>>>>>> b38c68f0d1ea6ca263d8bc62107cf8e23cd3f12f
               handlePostback(sender_psid, webhookEvent.postback);
             }
         });
