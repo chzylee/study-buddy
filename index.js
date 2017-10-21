@@ -1,10 +1,10 @@
 'use strict';
 
 // Imports dependencies and set up http server
-const express = require('express');
-const bodyParser = require('body-parser');
-const request = require('request');
-const app = express().use(bodyParser.json()); // creates express http server
+const
+  express = require('express'),
+  bodyParser = require('body-parser'),
+  app = express().use(bodyParser.json()); // creates express http server
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 // Sets server port and logs message on success
@@ -35,7 +35,7 @@ app.post('/webhook', (req, res) => {
             // pass the event to the appropriate handler function
             if (webhookEvent.message) {
               handleMessage(sender_psid, webhookEvent.message);
-            } else if (webhook_event.postback) {
+            } else if (webhookEvent.postback) {
               handlePostback(sender_psid, webhookEvent.postback);
             }
         });
@@ -75,7 +75,7 @@ app.get('/webhook', (req, res) => {
             res.sendStatus(403);
         }
     }
-});
+}
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
@@ -86,6 +86,35 @@ function handleMessage(sender_psid, received_message) {
   // Create the payload for a basic text message
     response = {
       "text": 'You sent the message: "${received_message.text}". Now send me an image!'
+    }
+  } else if (received_message.attachments) {
+
+    // Gets the URL of the message attachment
+    let attachment_url = received_message.attachments[0].payload.url;
+    response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Is this the right picture?",
+            "subtitle": "Tap a button to answer.",
+            "image_url": attachment_url,
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "Yes!",
+                "payload": "yes",
+              },
+              {
+                "type": "postback",
+                "title": "No!",
+                "payload": "no",
+              }
+            ],
+          }]
+        }
+      }
     }
   }
 
