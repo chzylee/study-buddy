@@ -86,13 +86,12 @@ function handleMessage(sender_psid, received_message) {
     if (greetings && greetings.confidence > 0.8) {
         console.log('detected greeting');
         response = {
-
-         "text" : 'Hey there! What would you like to study?'
+            "text": 'Hey there! What would you like to study?'
         }
     } else {
         console.log('not greeting');
         response = {
-          "text" : 'negative'
+            "text": 'negative'
         }
     }
 /*
@@ -150,9 +149,13 @@ function handlePostback(sender_psid, received_postback) {
 
     // Set the response based on the postback payload
     if (payload === 'yes') {
-        response = { "text": "Thanks!" }
+        response = { 
+            "text": "Thanks!" 
+        }
     } else if (payload === 'no') {
-        response = { "text": "Oops, try sending another image." }
+        response = { 
+            "text": "Oops, try sending another image." 
+        }
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
@@ -184,6 +187,6 @@ function callSendAPI(sender_psid, response) {
 }
 
 function firstEntity(nlp, name) {
-  return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
 
