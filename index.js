@@ -84,15 +84,33 @@ function handleMessage(sender_psid, received_message) {
     console.log('received message: ' + received_message);
 
     const greetings = firstEntity(received_message.nlp, 'greetings');
-    //const subject = firstEntity(received_message.nlp, 'message_subject');
-    //const goodbye = firstEntity(received_message.nlp, 'bye');
-    //var askedSearchQuery = false;
-    //var answer = 'grey';
+    const subject = firstEntity(received_message.nlp, 'message_subject');
+    const goodbye = firstEntity(received_message.nlp, 'bye');
+    var askedSearchQuery = false;
+    var answer = 'grey';
     if (greetings && greetings.confidence > 0.8) {
         console.log('detected greeting');
         response = {
             "text": 'Hey there! What would you like to study?',
           //  "askedSearchQuery": true
+        }
+    } else if (goodbye && goodbye.confidence > 0.8) {
+        console.log('detected greeting');
+        response = {
+            "text": 'Thanks for studying with me!'
+        }
+    } else if (askedSearchQuery) {
+        response = {
+            "text": 'Ok, let\'s learn about ' + subject + '.' + ' What is the color of an elephant?'
+        }
+        askedSearchQuery = false; // reset
+    } else if (replied === answer) {
+        response = {
+            "text": 'That\'s correct!'
+        }
+    } else if (replied !== answer) {
+        response = {
+            "text": 'That\'s incorrect'
         }
     } else { // not in new code
       console.log('not greeting');
@@ -100,25 +118,6 @@ function handleMessage(sender_psid, received_message) {
         "test" : 'negative'
       }
     }
-    /* else if (goodbye && goodbye.confidence > 0.8) {
-        console.log('detected greeting');
-        response = {
-            "text": 'Thanks for studying with me!'
-        }
-    } else if (askedSearchQuery) {
-        askedSearchQuery = false;
-        response = {
-            "text": 'Ok, let\'s learn about ' + subject + '.' + ' What is the color of an elephant?'
-        }
-    } else if(replied === answer) {
-        response = {
-            "text": 'That\'s correct!'
-        }
-    } else if(replied !== answer) {
-        response = {
-            "text": 'That\'s incorrect'
-        }
-    }  */
 
     /*
     // Check if the message contains text
