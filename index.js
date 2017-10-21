@@ -85,10 +85,16 @@ function handleMessage(sender_psid, received_message) {
     const greetings = firstEntity(received_message.nlp, 'greetings');
     if (greetings && greetings.confidence > 0.8) {
         console.log('detected greeting');
-        response = 'Hey there! What would you like to study?';
+        response = {
+
+         "text" = 'Hey there! What would you like to study?'
+        }
     } else {
         console.log('not greeting');
-        response = 'negative';
+        response = {
+          "text" = 'negative'
+        }
+        }
     }
 /*
   // Check if the message contains text
