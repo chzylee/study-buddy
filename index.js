@@ -84,17 +84,23 @@ function handleMessage(sender_psid, received_message) {
     console.log('received message: ' + received_message);
 
     const greetings = firstEntity(received_message.nlp, 'greetings');
-    const subject = firstEntity(received_message.nlp, 'message_subject');
-    const goodbye = firstEntity(received_message.nlp, 'bye');
-    var askedSearchQuery = false;
-    var answer = 'grey';
+    //const subject = firstEntity(received_message.nlp, 'message_subject');
+    //const goodbye = firstEntity(received_message.nlp, 'bye');
+    //var askedSearchQuery = false;
+    //var answer = 'grey';
     if (greetings && greetings.confidence > 0.8) {
         console.log('detected greeting');
         response = {
             "text": 'Hey there! What would you like to study?',
-            "askedSearchQuery": true
+          //  "askedSearchQuery": true
         }
-    }/* else if (goodbye && goodbye.confidence > 0.8) {
+    } else { // not in new code
+      console.log('not greeting');
+      response = {
+        "test" : 'negative'
+      }
+    }
+    /* else if (goodbye && goodbye.confidence > 0.8) {
         console.log('detected greeting');
         response = {
             "text": 'Thanks for studying with me!'
@@ -112,7 +118,7 @@ function handleMessage(sender_psid, received_message) {
         response = {
             "text": 'That\'s incorrect'
         }
-    }  */      
+    }  */
 
     /*
     // Check if the message contains text
@@ -145,7 +151,7 @@ function handleMessage(sender_psid, received_message) {
         } else if(replied !== answer) {
             response = {
                 "text": 'That\'s incorrect'
-            }    
+            }
         } else if (received_message.attachments) {
 
             // Gets the URL of the message attachment
@@ -168,7 +174,7 @@ function handleMessage(sender_psid, received_message) {
                                 "type": "postback",
                                 "title": "No!",
                                 "payload": "no",
-                            }],   
+                            }],
                         }]
                     }
                 }
@@ -178,7 +184,7 @@ function handleMessage(sender_psid, received_message) {
     */
     // Sends the response message
     callSendAPI(sender_psid, response);
-    }
+}
 
 
 // Handles messaging_postbacks events
@@ -190,12 +196,12 @@ function handlePostback(sender_psid, received_postback) {
 
     // Set the response based on the postback payload
     if (payload === 'yes') {
-        response = { 
-            "text": "Thanks!" 
+        response = {
+            "text": "Thanks!"
         }
     } else if (payload === 'no') {
-        response = { 
-            "text": "Oops, try sending another image." 
+        response = {
+            "text": "Oops, try sending another image."
         }
     }
     // Send the message to acknowledge the postback
