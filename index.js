@@ -87,13 +87,12 @@ function handleMessage(sender_psid, received_message) {
         console.log('detected greeting');
         response = {
 
-         "text" = 'Hey there! What would you like to study?'
+         "text" : 'Hey there! What would you like to study?'
         }
     } else {
         console.log('not greeting');
         response = {
-          "text" = 'negative'
-        }
+          "text" : 'negative'
         }
     }
 /*
