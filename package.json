@@ -1,0 +1,19 @@
+{
+  "name": "study-buddy",
+  "version": "1.0.0",
+  "description": "Quizlet study buddy to quiz you on Facebook Messenger",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chzylee/study-buddy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chzylee/study-buddy/issues"
+  },
+  "homepage": "https://github.com/chzylee/study-buddy#readme"
+}
