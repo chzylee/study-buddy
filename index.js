@@ -81,9 +81,12 @@ app.get('/webhook', (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
 
-  const greeting = firstEntity(received_message.nlp, 'greeting');
-  if (greeting && greeting.confidence > 0.8) {
+  const greetings = firstEntity(received_message.nlp, 'greetings');
+  if (greetings && greetings.confidence > 0.8) {
     sendResponse('Hey there! What would you like to study?')
+  else{
+    sendResponse('negative');
+  }
 /*
   // Check if the message contains text
   if (received_message.text) {
