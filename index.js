@@ -174,18 +174,12 @@ function handleMessage(sender_psid, received_message) {
                 }
             }
         }
-<<<<<<< HEAD
     }}
     */
     // Sends the response message
     callSendAPI(sender_psid, response);
-=======
->>>>>>> de7c7e80bb779f1a895970e89f347fc5f8767872
-
-        // Sends the response message
-        callSendAPI(sender_psid, response);
     }
-}
+
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
