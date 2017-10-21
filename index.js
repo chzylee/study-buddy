@@ -117,66 +117,74 @@ function handleMessage(sender_psid, received_message) {
     /*
     // Check if the message contains text
     if (received_message.text) {
-    // Create the payload for a basic text message
-    const greetings = firstEntity(received_message.nlp, 'greetings');
-    const subject = firstEntity(received_message.nlp, 'message_subject');
-    const goodbye = firstEntity(received_message.nlp, 'bye');
-    var askedSearchQuery = false;
-    var answer = 'grey';
-    if (greetings && greetings.confidence > 0.8) {
-        console.log('detected greeting');
-        response = {
-            "text": 'Hey there! What would you like to study?',
-            "askedSearchQuery": true
-        }
-    } else if (goodbye && goodbye.confidence > 0.8) {
-        response = {
-            "text": 'Thanks for studying with me!'
-        }
-    } else if (askedSearchQuery) {
-        askedSearchQuery = false;
-        response = {
-            "text": 'Ok, let\'s learn about ' + subject + '.' + ' What is the color of an elephant?'
-        }
-    } else if(replied === answer) {
-        response = {
-            "text": 'That\'s correct!'
-        }
-    } else if(replied !== answer) {
-        response = {
-            "text": 'That\'s incorrect'
-        }    
-    } else if (received_message.attachments) {
+        // Create the payload for a basic text message
+        const greetings = firstEntity(received_message.nlp, 'greetings');
+        const subject = firstEntity(received_message.nlp, 'message_subject');
+        const goodbye = firstEntity(received_message.nlp, 'bye');
+        var askedSearchQuery = false;
+        var answer = 'grey';
+        if (greetings && greetings.confidence > 0.8) {
+            console.log('detected greeting');
+            response = {
+                "text": 'Hey there! What would you like to study?',
+                "askedSearchQuery": true
+            }
+        } else if (goodbye && goodbye.confidence > 0.8) {
+            response = {
+                "text": 'Thanks for studying with me!'
+            }
+        } else if (askedSearchQuery) {
+            askedSearchQuery = false;
+            response = {
+                "text": 'Ok, let\'s learn about ' + subject + '.' + ' What is the color of an elephant?'
+            }
+        } else if(replied === answer) {
+            response = {
+                "text": 'That\'s correct!'
+            }
+        } else if(replied !== answer) {
+            response = {
+                "text": 'That\'s incorrect'
+            }    
+        } else if (received_message.attachments) {
 
-    // Gets the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
-    response = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Is this the right picture?",
-                    "subtitle": "Tap a button to answer.",
-                    "image_url": attachment_url,
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Yes!",
-                        "payload": "yes",
-                    },
-                    {
-                        "type": "postback",
-                        "title": "No!",
-                        "payload": "no",
-                    }],   
-                }]
+            // Gets the URL of the message attachment
+            let attachment_url = received_message.attachments[0].payload.url;
+            response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [{
+                            "title": "Is this the right picture?",
+                            "subtitle": "Tap a button to answer.",
+                            "image_url": attachment_url,
+                            "buttons": [{
+                                "type": "postback",
+                                "title": "Yes!",
+                                "payload": "yes",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "No!",
+                                "payload": "no",
+                            }],   
+                        }]
+                    }
+                }
             }
         }
+<<<<<<< HEAD
     }}
     */
     // Sends the response message
     callSendAPI(sender_psid, response);
+=======
+>>>>>>> de7c7e80bb779f1a895970e89f347fc5f8767872
 
+        // Sends the response message
+        callSendAPI(sender_psid, response);
+    }
 }
 
 // Handles messaging_postbacks events
