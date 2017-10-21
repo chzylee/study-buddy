@@ -76,7 +76,7 @@ app.get('/webhook', (req, res) => {
             res.sendStatus(403);
         }
     }
-}
+});
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
