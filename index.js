@@ -91,7 +91,16 @@ app.get('/webhook', (req, res) => {
 
       // Sends the response message
       callSendAPI(sender_psid, response);
-      
+
+    }
+
+    // Handles messaging_postbacks events
+    function handlePostback(sender_psid, received_postback) {
+
+    }
+
+    // Sends response messages via the Send API
+    function callSendAPI(sender_psid, response) {
       // Construct the message body
       let message = {
         "recipient": {
@@ -113,20 +122,4 @@ app.get('/webhook', (req, res) => {
           console.error("Unable to send message:" + err);
         }
       });
-    }
-
-    // Handles messaging_postbacks events
-    function handlePostback(sender_psid, received_postback) {
-
-    }
-
-    // Sends response messages via the Send API
-    function callSendAPI(sender_psid, response) {
-      // Construct the message body
-      let message = {
-        "recipient": {
-          "id": sender_psid
-        },
-        "message": response
-      }
     }
