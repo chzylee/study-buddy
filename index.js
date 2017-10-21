@@ -83,9 +83,9 @@ function handleMessage(sender_psid, received_message) {
 
   const greetings = firstEntity(received_message.nlp, 'greetings');
   if (greetings && greetings.confidence > 0.8) {
-    sendResponse('Hey there! What would you like to study?')
-  else{
-    sendResponse('negative');
+    response = 'Hey there! What would you like to study?';
+  } else {
+    response = 'negative';
   }
 /*
   // Check if the message contains text
@@ -125,9 +125,8 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     }
-
+    }
     */
-  }
 
   // Sends the response message
   callSendAPI(sender_psid, response);
