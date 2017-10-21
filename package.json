@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "npm test"
+    "test": "jasmine",
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,14 @@
     "@types/request-promise-native": "^1.0.8",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
-    "jasmine": "^2.8.0"
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-eslatest-node6": "^1.0.1"
   }
 }
