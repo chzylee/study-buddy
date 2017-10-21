@@ -85,7 +85,7 @@ app.get('/webhook', (req, res) => {
       if (received_message.text) {
         // Create the payload for a basic text message
         response = {
-          "test": 'You sent the message: "${received_message.text}". Now send me an image!'
+          "text": 'You sent the message: "${received_message.text}". Now send me an image!'
         }
       }
 
