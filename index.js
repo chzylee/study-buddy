@@ -85,8 +85,9 @@ function handleMessage(sender_psid, received_message) {
   // Check if the message contains text
   if (received_message.text) {
   // Create the payload for a basic text message
-    response = {
-      "text": 'You sent the message: ' + received_message.text + '. Now send me an image!'
+    const greeting = firstEntity(message.nlp, 'greeting');
+    if (greeting && greeting.confidence > 0.8) {
+      sendResponce('Hey there! What would you like to study?')
     }
   } else if (received_message.attachments) {
 
@@ -165,3 +166,8 @@ function callSendAPI(sender_psid, response) {
     }
   });
 }
+
+function firstEntity(nlp, name) {
+  return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+}
+
