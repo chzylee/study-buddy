@@ -100,5 +100,11 @@ app.get('/webhook', (req, res) => {
 
     // Sends response messages via the Send API
     function callSendAPI(sender_psid, response) {
-
+      // Construct the message body
+      let message = {
+        "recipient": {
+          "id": sender_psid
+        },
+        "message": response
+      }
     }
