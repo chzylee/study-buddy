@@ -81,12 +81,17 @@ app.get('/webhook', (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
 
+  const greeting = firstEntity(received_message.nlp, 'greeting');
+  if (greeting && greeting.confidence > 0.8) {
+    sendResponse('Hey there! What would you like to study?')
+/*
   // Check if the message contains text
   if (received_message.text) {
   // Create the payload for a basic text message
     const greeting = firstEntity(received_message.nlp, 'greeting');
     if (greeting && greeting.confidence > 0.8) {
       sendResponse('Hey there! What would you like to study?')
+      console.log('Hey there! What would you like to study?')
     }
   } else if (received_message.attachments) {
 
@@ -117,6 +122,8 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     }
+
+    */
   }
 
   // Sends the response message
