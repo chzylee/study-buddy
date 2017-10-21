@@ -87,7 +87,7 @@ function handleMessage(sender_psid, received_message) {
   // Create the payload for a basic text message
     const greeting = firstEntity(message.nlp, 'greeting');
     if (greeting && greeting.confidence > 0.8) {
-      sendResponce('Hey there! What would you like to study?')
+      sendResponse('Hey there! What would you like to study?')
     }
   } else if (received_message.attachments) {
 
