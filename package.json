@@ -4,6 +4,7 @@
   "description": "Quizlet study buddy to quiz you on Facebook Messenger",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "npm test"
   },
   "repository": {
