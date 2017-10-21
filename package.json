@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/chzylee/study-buddy#readme",
   "dependencies": {
+    "@types/request-promise-native": "^1.0.8",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "request": "^2.83.0"
