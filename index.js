@@ -91,27 +91,7 @@ app.get('/webhook', (req, res) => {
 
       // Sends the response message
       callSendAPI(sender_psid, response);
-        // Construct the message body
-        let message = {
-          "recipient": {
-            "id": sender_psid
-          },
-          "message": response
-        }
 
-        // Send the HTTP request to the Messenger Platform
-        request({
-          "uri": "https://graph.facebook.com/v2.6/me/messages",
-          "qs": { "access_token": GZ99W5DZ8A },
-          "method": "POST",
-          "json": request_body
-        }, (err, res, body) => {
-          if (!err) {
-            console.log('message sent!')
-          } else {
-            console.error("Unable to send message:" + err);
-          }
-        });
     }
 
     // Handles messaging_postbacks events
@@ -121,5 +101,25 @@ app.get('/webhook', (req, res) => {
 
     // Sends response messages via the Send API
     function callSendAPI(sender_psid, response) {
+      // Construct the message body
+      let message = {
+        "recipient": {
+          "id": sender_psid
+        },
+        "message": response
+      }
 
+      // Send the HTTP request to the Messenger Platform
+      request({
+        "uri": "https://graph.facebook.com/v2.6/me/messages",
+        "qs": { "access_token": GZ99W5DZ8A },
+        "method": "POST",
+        "json": request_body
+      }, (err, res, body) => {
+        if (!err) {
+          console.log('message sent!')
+        } else {
+          console.error("Unable to send message:" + err);
+        }
+      });
     }
