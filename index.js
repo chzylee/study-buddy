@@ -106,7 +106,7 @@ function handleMessage(sender_psid, received_message) {
             const testZeroOne = two(received_message.nlp, 'message_subject');
             console.log('su is ' + su + ', suone is ' + suone + ', detected subject zero is ' + subZero + ', testZero is ' + testZero + ', and testZeroOne is ' + testZeroOne);
             response = {
-              "text": 'You wish to study ' + subZero + ' or ' + testZero + ' or ' + testZeroOne + ' or ' testZeroOne.body
+              "text": 'You wish to study ' + subZero + ' or ' + testZero + ' or ' + testZeroOne
             }
             state = 'idle';
         }
