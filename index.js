@@ -89,6 +89,7 @@ function handleMessage(sender_psid, received_message) {
         // Create the payload for a basic text message
         if (state === 'idle') {
             // Check for greeting
+            console.log('looking for greeting');
             const greetings = firstEntity(received_message.nlp, 'greetings');
             if (greetings && greetings.confidence > 0.8) {
                 console.log('detected greeting');
