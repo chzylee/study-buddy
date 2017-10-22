@@ -88,10 +88,10 @@ module.exports = class Flashcards {
     getAnswer(guess) {
         // var question = this.dataStore.getData('answer');
         if (guess === this.question.a) {
-            return 'Correct! :)';
+            return 1;
         }
         else {
-            return 'Incorrect. :(';
+            return 0;
         }
     }
 }
