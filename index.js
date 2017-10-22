@@ -110,7 +110,7 @@ async function handleMessage(sender_psid, received_message) {
             console.log('pulling flashcards');
             response = {
                 "text": 'Okay! I got the ' + query + ' flashcards to study! Tell me when to start.'
-                        + 'just say "stop this set" if you ever want to stop a deck of cards'
+                        + ' Just say "stop this set" if you ever want to stop a deck of cards'
             };
             state = 'asking questions';
         } else if (state === 'asking questions') {
