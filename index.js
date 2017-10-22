@@ -209,28 +209,51 @@ function callSendAPI(sender_psid, response) {
 }
 
 function firstEntity(nlp, name) {
-  return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
 
 function zeroEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
 
 function oneEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][1];
+    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][1];
 }
 
 function twoEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][2];
+    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][2];
 }
 
 function threeEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][3];
+    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][3];
 }
 
 function fourEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][4];
+    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][4];
 }
+// function firstEntity(nlp, name) {
+//   return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+// }
+//
+// function zeroEntity(nlp, name) {
+//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+// }
+//
+// function oneEntity(nlp, name) {
+//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][1];
+// }
+//
+// function twoEntity(nlp, name) {
+//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][2];
+// }
+//
+// function threeEntity(nlp, name) {
+//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][3];
+// }
+//
+// function fourEntity(nlp, name) {
+//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][4];
+// }
 
 //function subjectEntity(nlp, name) {
 //    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][4];
