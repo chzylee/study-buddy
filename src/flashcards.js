@@ -29,12 +29,20 @@ module.exports = class Flashcards {
     // parse deck of cards to thin data
     parseFlashcards(set) {
         var parsedSet = [];
+
         for (var i = 0; i < set.length; i++) {
-            parsedSet.push({
-                term: set[i].term,
-                definition: set[i].definition,
-                image: set[i].image.url
-            });
+            if(set[i].image){
+                parsedSet.push({
+                    term: set[i].term,
+                    definition: set[i].definition,
+                    image: set[i].image.url
+                });
+            } else {
+                parsedSet.push({
+                    term: set[i].term,
+                    definition: set[i].definition
+                });
+            }
         }
         // console.log('PARSED SET:');
         // console.log(parsedSet);
