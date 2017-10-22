@@ -54,7 +54,7 @@ module.exports = class Flashcards {
     getTermQuestion(set) {
         this.question = { // populate answer data with info from set
             q: 'What is the definition of the term: ' + set[0].term + '?',
-            a: set[0].definition
+            a: set[0].definition.toLowerCase()
         }
         set = set.shift(); // pop card off set
         return this.question.q;
@@ -64,7 +64,7 @@ module.exports = class Flashcards {
     getDefinitionQuestion(set) {
         this.question = {
             q: 'What is the term corresponding to this definition: ' + set[0].definition + '?',
-            a: set[0].term
+            a: set[0].term.toLowerCase()
         }
         set = set.shift(); // pop card off set
         return this.question.q;
@@ -95,7 +95,7 @@ module.exports = class Flashcards {
     // return info about answer correctness
     getAnswer(guess) {
         // var question = this.dataStore.getData('answer');
-        if (guess === this.question.a) {
+        if (guess.toLowerCase() === this.question.a) {
             return 1;
         }
         else {
