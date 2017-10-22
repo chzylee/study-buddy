@@ -111,6 +111,7 @@ async function handleMessage(sender_psid, received_message) {
             state = 'need flashcards';
         } else if (state === 'need flashcards') {
             set = await dealer.getCards(query);
+            console.log('pulling flashcards');
             response = {
                 "text": 'I got the flashcards'
             };
@@ -124,7 +125,7 @@ async function handleMessage(sender_psid, received_message) {
         //         state = 'need query';
         //     }
         //     response = {
-        //         "text": question 
+        //         "text": question
         //     }
         //     state = 'awaiting answer'
         // } else if (state === 'awaiting answer') {
