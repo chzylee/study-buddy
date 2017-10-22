@@ -187,11 +187,3 @@ function callSendAPI(sender_psid, response) {
 function firstEntity(nlp, name) {
     return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
-
-function zeroEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
-}
-
-function two(nlp, name) {
-    return nlp && nlp.entities && nlp.entities && nlp.entities[name];
-}
