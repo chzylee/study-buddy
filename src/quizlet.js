@@ -1,6 +1,7 @@
 const request = require('request-promise-native');
 
-async function searchSets(searchQuery) {
+// searches Quizlet for set of cards using given query and passes on store for storage of data
+async function searchSets(searchQuery, store) {
     var options = {
         method: 'GET',
         uri: 'https://api.quizlet.com/2.0/search/sets',
@@ -19,23 +20,18 @@ async function searchSets(searchQuery) {
         .then(function(response) {
             // console.dir(JSON.parse(response.body));
             var sets = JSON.parse(response.body).sets
-            return getSet(getSetId(sets));
+            store.setData(searchQuery, sets);
+            if(sets.length > 0) {
+                console.log('USING SET ID ' + sets[0].id);
+                return getSet(sets[0].id, store);
+            } else {
+                console.log('Error: NO SETS FOUND');
+            }
         });
     return results;
 }
 
-function getSetId(sets) {
-    if(sets.length > 0) {
-        console.log(sets[0].id);
-        return sets[0].id;  
-    }
-    else {
-        console.log('Error: NO SETS FOUND');
-        return undefined;
-    }
-}
-
-async function getSet(id) {
+async function getSet(id, store) {
     if(id === undefined) {
         return;
     }
@@ -50,14 +46,15 @@ async function getSet(id) {
     const set = await request(options)
     .then(function(response) {
         // console.dir(JSON.parse(response));
-        var resp = JSON.parse(response);
-        console.log(resp.terms);
+        var set = JSON.parse(response).terms;
+        console.log('USING SET :');
+        console.log(set); 
+        store.setData('current', set); // store entire set for future use
     });
     return set;
 }
 
 module.exports = {
     searchSets: searchSets,
-    getSetId: getSetId,
     getSet: getSet
 }
