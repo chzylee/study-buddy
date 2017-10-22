@@ -112,6 +112,7 @@ async function handleMessage(sender_psid, received_message) {
             };
             state = 'asking questions';
         } else if (state === 'asking questions') {
+            console.log('LENGTH: ' + set.length);
             if (set.length === 0) {
                 response = {
                     "text": 'That\'s all the terms in this set! What would you like to study next?'
