@@ -96,8 +96,11 @@ function handleMessage(sender_psid, received_message) {
                 response = {
                     "text": 'Hey there! What would you like to study?'
                 }
+                state = 'need query';
             }
-        }   
+        } else if (state === 'need query') {
+            state = 'idle';
+        }
     } else if (received_message.attachments) {
         // Gets the URL of the message attachment
         let attachment_url = received_message.attachments[0].payload.url;
