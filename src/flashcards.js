@@ -83,6 +83,18 @@ module.exports = class Flashcards {
         set = set.shift(); // pop card off set
         return this.question.q;
     }
+
+    // return a random question
+    getRandomQuestion(set) {
+        var i = Math.ceil(Math.random() * (2));
+        if (i === 0) {
+            return getTermQuestion(set);
+        } else if (i === 1) {
+            return getDefinitionQuestion(set);
+        } else {
+            return getImageQuestion(set);
+        }
+    }
     
     // return info about answer correctness
     getAnswer(guess) {
