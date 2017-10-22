@@ -86,7 +86,7 @@ function handleMessage(sender_psid, received_message) {
     const greetings = firstEntity(received_message.nlp, 'greetings');
     const subject = firstEntity(received_message.nlp, 'message_subject');
     const goodbye = firstEntity(received_message.nlp, 'bye');
-    var askedSearchQuery;
+    var askedSearchQuery = false;
     var answer = 'grey';
     if (greetings && greetings.confidence > 0.8) {
         console.log('detected greeting');
@@ -99,7 +99,7 @@ function handleMessage(sender_psid, received_message) {
         response = {
             "text": 'Thanks for studying with me!'
         }
-    } else if (askedSearchQuery) {
+    } /*else if (askedSearchQuery) {
         response = {
             "text": 'Ok, let\'s learn about ' + subject + '.' + ' What is the color of an elephant?'
         }
@@ -112,7 +112,7 @@ function handleMessage(sender_psid, received_message) {
         response = {
             "text": 'That\'s incorrect'
         }
-    } else { // not in new code
+    }*/ else { // not in new code
       console.log('not greeting');
       response = {
         "test" : 'negative'
