@@ -111,7 +111,9 @@ async function handleMessage(sender_psid, received_message) {
             state = 'need flashcards';
         } else if (state === 'need flashcards') {
             set = await dealer.getCards(query);
-            response = 'I got the flashcards';
+            response = {
+                "text": 'I got the flashcards'
+            };
             state = 'asking questions';
         // } else if (state === 'asking questions') {
         //     var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
