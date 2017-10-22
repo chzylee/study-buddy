@@ -115,16 +115,28 @@ async function handleMessage(sender_psid, received_message) {
         } else if (state === 'asking questions') {
             var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
             if (question === 0) {
-                // let user know they ran out with that deck
-                // update state accordingly
+                response = {
+                    "text": 'That\'s all the terms in this set! What would you like to study next?'
+                }
+                state = 'need query';
             }
-            // ask question
-            // change state
-        } else if (state === 'state'/*state from above*/) {
-            var guess = ''; // replace '' with the users guess
+            response = {
+                "text": question 
+            }
+            state = 'awaiting answer'
+        } else if (state === 'awaiting answer') {
+            var guess = firstEntity(received_message.nlp, 'message_subject').value;
             var correct = flashcards.getAnswer();
-            // respond with response from answer check
-            // change state appropriately
+            if (correct === 1){
+                response = {
+                    "text": 'That\'s right\!'
+                }
+            } else {
+                response = {
+                    "text": 'Sorry, the correct answer is ' + correct + '.'
+                }
+            }
+            state = 'asking questions';
         }
     }
     // Sends the response message
