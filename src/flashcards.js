@@ -16,6 +16,7 @@ module.exports = class Flashcards {
         }
     }
 
+    // gets the set of flashcards and passes to parser
     async getFlashcards(id) {
         try {
             var set = await quizlet.getSet(id);
@@ -41,6 +42,7 @@ module.exports = class Flashcards {
         return parsedSet;
     }
 
+    // returns question about the term on the top card
     getTermQuestion(set) {
         // var set = getCurrentSet();
         if (set.length === 0) {
@@ -54,6 +56,7 @@ module.exports = class Flashcards {
         return this.question.q;
     }
 
+    // returns question about the defition on the top card
     getDefinitionQuestion(set) {
         // var set = getCurrentSet();
         if (set.length === 0) {
@@ -67,6 +70,7 @@ module.exports = class Flashcards {
         return this.question.q;
     }
 
+    // return question about the image on the card
     getImageQuestion(set) {
         // var set = getCurrentSet();
         if (set.length === 0) {
@@ -80,6 +84,7 @@ module.exports = class Flashcards {
         return this.question.q;
     }
     
+    // return info about answer correctness
     getAnswer(guess) {
         // var question = this.dataStore.getData('answer');
         if (guess === this.question.a) {
