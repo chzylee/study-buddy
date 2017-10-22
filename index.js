@@ -99,34 +99,11 @@ function handleMessage(sender_psid, received_message) {
                 state = 'need query';
             }
         } else if (state === 'need query') {
-            const subZero = zeroEntity(received_message.nlp, 'message_subject');
-            const subOne = oneEntity(received_message.nlp, 'message_subject');
-            const subTwo = twoEntity(received_message.nlp, 'message_subject');
-            const subThree = threeEntity(received_message.nlp, 'message_subject');
-            const subFour = fourEntity(received_message.nlp, 'message_subject');
-            console.log('detected subject zero is ' + subZero);
+            const subZero = firstEntity(received_message.nlp, 'message_subject');
+            const testZero = zeroEntity(received_message.nlp, 'message_subject');
+            console.log('detected subject zero is ' + subZero + ' and testZero is ' + testZero);
             response = {
-              "text": 'You wish to study ' + subZero
-            }
-
-            console.log('detected subject one is ' + subOne);
-            response = {
-              "text": 'You wish to study ' + subOne
-            }
-
-            console.log('detected subject two is ' + subTwo);
-            response = {
-              "text": 'You wish to study ' + subTwo
-            }
-
-            console.log('detected subject three is ' + subThree);
-            response = {
-              "text": 'You wish to study ' + subThree
-            }
-
-            console.log('detected subject four is ' + subFour);
-            response = {
-              "text": 'You wish to study ' + subFour
+              "text": 'You wish to study ' + subZero + ' or ' + testZero
             }
             state = 'idle';
         }
@@ -213,48 +190,5 @@ function firstEntity(nlp, name) {
 }
 
 function zeroEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
-
-function oneEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][1];
-}
-
-function twoEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][2];
-}
-
-function threeEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][3];
-}
-
-function fourEntity(nlp, name) {
-    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][4];
-}
-// function firstEntity(nlp, name) {
-//   return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
-// }
-//
-// function zeroEntity(nlp, name) {
-//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
-// }
-//
-// function oneEntity(nlp, name) {
-//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][1];
-// }
-//
-// function twoEntity(nlp, name) {
-//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][2];
-// }
-//
-// function threeEntity(nlp, name) {
-//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][3];
-// }
-//
-// function fourEntity(nlp, name) {
-//     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][4];
-// }
-
-//function subjectEntity(nlp, name) {
-//    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][4];
-//}
