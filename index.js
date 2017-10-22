@@ -112,14 +112,14 @@ async function handleMessage(sender_psid, received_message) {
             };
             state = 'asking questions';
         } else if (state === 'asking questions') {
-            var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
-            if (question === 'done') {
+            if (set.length === 0) {
                 response = {
                     "text": 'That\'s all the terms in this set! What would you like to study next?'
                 }
                 state = 'need query';
             }
             else {
+                var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
                 response = {
                     "text": question
                 }

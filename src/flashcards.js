@@ -44,10 +44,6 @@ module.exports = class Flashcards {
 
     // returns question about the term on the top card
     getTermQuestion(set) {
-        // var set = getCurrentSet();
-        if (set.length === 0) {
-            return 0;
-        }
         this.question = { // populate answer data with info from set
             q: 'What is the definition of the term: ' + set[0].term + '?',
             a: set[0].definition
@@ -58,10 +54,6 @@ module.exports = class Flashcards {
 
     // returns question about the defition on the top card
     getDefinitionQuestion(set) {
-        // var set = getCurrentSet();
-        if (set.length === 0) {
-            return 0;
-        }
         this.question = {
             q: 'What is the term corresponding to this definition: ' + set[0].definition + '?',
             a: set[0].term
@@ -72,10 +64,6 @@ module.exports = class Flashcards {
 
     // return question about the image on the card
     getImageQuestion(set) {
-        console.log(set.length);
-        if (set.length == 0) {
-            return 'done';
-        }
         this.question = {
             q: 'What is the term corresponding to this image: ' + set[0].image + '?',
             a: set[0].term
