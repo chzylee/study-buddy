@@ -109,6 +109,7 @@ async function handleMessage(sender_psid, received_message) {
             console.log('pulling flashcards');
             response = {
                 "text": 'Okay! I got the ' + query + ' flashcards to study! Tell me when to start.'
+                        + 'just say "stop this set" if you ever want to stop a deck of cards'
             };
             state = 'asking questions';
         } else if (state === 'asking questions') {
@@ -128,18 +129,25 @@ async function handleMessage(sender_psid, received_message) {
             }
         } else if (state === 'awaiting answer') {
             var guess = firstEntity(received_message.nlp, 'message_subject').value;
-            var correct = flashcards.getAnswer(guess);
-            if (correct === 1){
+            if(guess.toLowerCase() === 'stop this set') {
                 response = {
-                    "text": 'That\'s right\! Tell me when to go to the next one. There are ' + set.length + ' cards left in this set.'
+                    "text": 'Ok! I will stop using this set. What would you like to study next?'
                 }
+                state = 'need query';
             } else {
-                response = {
-                    "text": 'Sorry, the correct answer is ' + correct + '. Tell me when to go to the next one. There are ' 
-                            + set.length + ' cards left in this set.'
+                var correct = flashcards.getAnswer(guess);
+                if (correct === 1){
+                    response = {
+                        "text": 'That\'s right\! Tell me when to go to the next one. There are ' + set.length + ' cards left in this set.'
+                    }
+                } else {
+                    response = {
+                        "text": 'Sorry, the correct answer is ' + correct + '. Tell me when to go to the next one. There are ' 
+                                + set.length + ' cards left in this set.'
+                    }
                 }
+                state = 'asking questions';
             }
-            state = 'asking questions';
         }
     }
     // Sends the response message
