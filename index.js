@@ -86,13 +86,13 @@ function handleMessage(sender_psid, received_message) {
     const greetings = firstEntity(received_message.nlp, 'greetings');
     const subject = firstEntity(received_message.nlp, 'message_subject');
     const goodbye = firstEntity(received_message.nlp, 'bye');
-    var askedSearchQuery = false;
+    var askedSearchQuery;
     var answer = 'grey';
     if (greetings && greetings.confidence > 0.8) {
         console.log('detected greeting');
         response = {
             "text": 'Hey there! What would you like to study?',
-          //  "askedSearchQuery": true
+            "askedSearchQuery": true
         }
     } else if (goodbye && goodbye.confidence > 0.8) {
         console.log('detected greeting');
