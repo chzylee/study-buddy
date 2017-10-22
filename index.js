@@ -125,7 +125,7 @@ async function handleMessage(sender_psid, received_message) {
             state = 'awaiting answer'
         } else if (state === 'awaiting answer') {
             var guess = firstEntity(received_message.nlp, 'message_subject').value;
-            var correct = flashcards.getAnswer();
+            var correct = flashcards.getAnswer(guess);
             if (correct === 1){
                 response = {
                     "text": 'That\'s right\! Tell me when to go to the next one. There are ' + set.length + ' cards left in this set.'
