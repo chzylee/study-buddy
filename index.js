@@ -132,7 +132,8 @@ async function handleMessage(sender_psid, received_message) {
                 }
             } else {
                 response = {
-                    "text": 'Sorry, the correct answer is ' + correct + '. Tell me when to go to the next one. There are ' + set.length + ' cards left in this set.';
+                    "text": 'Sorry, the correct answer is ' + correct + '. Tell me when to go to the next one. There are ' 
+                            + set.length + ' cards left in this set.'
                 }
             }
             state = 'asking questions';
