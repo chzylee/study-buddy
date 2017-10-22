@@ -106,7 +106,7 @@ async function handleMessage(sender_psid, received_message) {
             const query = firstEntity(received_message.nlp, 'message_subject').value;
             // console.log(query);
             response = {
-              "text": 'Ok, let\'s study ' + query + "\!"
+              "text": 'Ok, let\'s study ' + query + "\!  Give me a while to retrieve the flashcards."
             }
             state = 'need flashcards';
         } else if (state === 'need flashcards') {
