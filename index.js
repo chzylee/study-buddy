@@ -94,6 +94,12 @@ async function handleMessage(sender_psid, received_message) {
         if(receivedText.toLowerCase() === 'bye') {
             response = {
                 "text": 'Good bye!'
+                "attachment": {
+                  "type": "image",
+                  "payload":{
+                    "url":"https://media.giphy.com/media/Ljyogj1NtR6FO/giphy.gif"
+                  }
+                }
             }
             state = 'idle';
         } else if (receivedText.toLowerCase() === 'banana') {
