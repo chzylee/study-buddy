@@ -104,6 +104,9 @@ function handleMessage(sender_psid, received_message) {
             const subZero = firstEntity(received_message.nlp, 'message_subject');
             const testZero = zeroEntity(received_message.nlp, 'message_subject');
             const testZeroOne = two(received_message.nlp, 'message_subject');
+            console.log(su);
+            console.log(suone);
+            console.log(subZero);
             console.log('su is ' + su + ', suone is ' + suone + ', detected subject zero is ' + subZero + ', testZero is ' + testZero + ', and testZeroOne is ' + testZeroOne);
             response = {
               "text": 'You wish to study ' + subZero + ' or ' + testZero + ' or ' + testZeroOne
