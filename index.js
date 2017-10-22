@@ -104,7 +104,7 @@ async function handleMessage(sender_psid, received_message) {
             }
         } else if (state === 'need query') {
             const query = firstEntity(received_message.nlp, 'message_subject').value;
-            console.log(subZero);
+            // console.log(query);
             response = {
               "text": 'Ok, let\'s study ' + query + "\!"
             }
