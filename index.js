@@ -83,19 +83,6 @@ function handleMessage(sender_psid, received_message) {
     let response;
     console.log('received message: ' + received_message);
 
-    // const greetings = firstEntity(received_message.nlp, 'greetings');
-    // if (greetings && greetings.confidence > 0.8) {
-    //     console.log('detected greeting');
-    //     response = {
-    //         "text": 'Hey there! What would you like to study?'
-    //     }
-    // } else { // not in new code
-    //     console.log('not greeting');
-    //     response = {
-    //         "test" : 'negative'
-    //     }
-    // }
-
     // Check if the message contains text
     if (received_message.text) {
         // Create the payload for a basic text message
