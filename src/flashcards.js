@@ -73,7 +73,7 @@ module.exports = class Flashcards {
     // return question about the image on the card
     getImageQuestion(set) {
         if (set.length === 0) {
-            return 0;
+            return 'done';
         }
         this.question = {
             q: 'What is the term corresponding to this image: ' + set[0].image + '?',

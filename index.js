@@ -113,7 +113,7 @@ async function handleMessage(sender_psid, received_message) {
             state = 'asking questions';
         } else if (state === 'asking questions') {
             var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
-            if (question === 0) {
+            if (question === 'done') {
                 response = {
                     "text": 'That\'s all the terms in this set! What would you like to study next?'
                 }
