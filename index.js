@@ -108,8 +108,6 @@ async function handleMessage(sender_psid, received_message) {
             response = {
               "text": 'Ok, let\'s study ' + query + "\!  Give me a while to retrieve the flashcards."
             }
-            state = 'need flashcards';
-        } else if (state === 'need flashcards') {
             set = await dealer.getCards(query);
             console.log('pulling flashcards');
             response = {
