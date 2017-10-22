@@ -99,6 +99,11 @@ function handleMessage(sender_psid, received_message) {
                 state = 'need query';
             }
         } else if (state === 'need query') {
+            const subject = subjectEntity(received_message.nlp, 'message_subject');
+            console.log('subject');
+            response = {
+              "text": 'You wish to study ' + subject
+            }
             state = 'idle';
         }
     } else if (received_message.attachments) {
@@ -181,4 +186,8 @@ function callSendAPI(sender_psid, response) {
 
 function firstEntity(nlp, name) {
     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+}
+
+function subjectEntity(nlp, name) {
+    return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][3];
 }
