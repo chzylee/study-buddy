@@ -108,7 +108,7 @@ async function handleMessage(sender_psid, received_message) {
             set = await dealer.getCards(query);
             console.log('pulling flashcards');
             response = {
-                "text": 'Okay! I got the ' + query + 'flashcards to study!'
+                "text": 'Okay! I got the ' + query + ' flashcards to study! Tell me when to start.'
             };
             state = 'asking questions';
         } else if (state === 'asking questions') {
@@ -123,19 +123,19 @@ async function handleMessage(sender_psid, received_message) {
                 "text": question
             }
             state = 'awaiting answer'
-        // } else if (state === 'awaiting answer') {
-        //     var guess = firstEntity(received_message.nlp, 'message_subject').value;
-        //     var correct = flashcards.getAnswer();
-        //     if (correct === 1){
-        //         response = {
-        //             "text": 'That\'s right\!'
-        //         }
-        //     } else {
-        //         response = {
-        //             "text": 'Sorry, the correct answer is ' + correct + '.'
-        //         }
-        //     }
-        //     state = 'asking questions';
+        } else if (state === 'awaiting answer') {
+            var guess = firstEntity(received_message.nlp, 'message_subject').value;
+            var correct = flashcards.getAnswer();
+            if (correct === 1){
+                response = {
+                    "text": 'That\'s right\!'
+                }
+            } else {
+                response = {
+                    "text": 'Sorry, the correct answer is ' + correct + '.'
+                }
+            }
+            state = 'asking questions';
         }
     }
     // Sends the response message
