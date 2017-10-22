@@ -44,7 +44,7 @@ module.exports = class Flashcards {
     getTermQuestion(set) {
         // var set = getCurrentSet();
         if (set.length === 0) {
-            return 'You have used all the cards in this set.';
+            return 0;
         }
         this.question = { // populate answer data with info from set
             q: 'What is the definition of this term: ' + set[0].term + '?',
@@ -57,7 +57,7 @@ module.exports = class Flashcards {
     getDefinitionQuestion(set) {
         // var set = getCurrentSet();
         if (set.length === 0) {
-            return 'You have used all the cards in this set.';
+            return 0;
         }
         this.question = {
             q: 'What is the term corresponding to this definition: ' + set[0].definition + '?',
@@ -70,7 +70,7 @@ module.exports = class Flashcards {
     getImageQuestion(set) {
         // var set = getCurrentSet();
         if (set.length === 0) {
-            return 'You have used all the cards in this set.';
+            return 0;
         }
         this.question = {
             q: 'What is the term corresponding to this image: ' + set[0].image + '?',
