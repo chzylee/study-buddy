@@ -105,27 +105,24 @@ async function handleMessage(sender_psid, received_message) {
         } else if (state === 'need query') {
             const query = firstEntity(received_message.nlp, 'message_subject').value;
             // console.log(query);
-            response = {
-              "text": 'Ok, let\'s study ' + query + "\!  Give me a while to retrieve the flashcards."
-            }
             set = await dealer.getCards(query);
             console.log('pulling flashcards');
             response = {
-                "text": 'I got the flashcards'
+                "text": 'Okay! I got the ' + query + 'flashcards to study!'
             };
             state = 'asking questions';
-        // } else if (state === 'asking questions') {
-        //     var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
-        //     if (question === 0) {
-        //         response = {
-        //             "text": 'That\'s all the terms in this set! What would you like to study next?'
-        //         }
-        //         state = 'need query';
-        //     }
-        //     response = {
-        //         "text": question
-        //     }
-        //     state = 'awaiting answer'
+        } else if (state === 'asking questions') {
+            var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
+            if (question === 0) {
+                response = {
+                    "text": 'That\'s all the terms in this set! What would you like to study next?'
+                }
+                state = 'need query';
+            }
+            response = {
+                "text": question
+            }
+            state = 'awaiting answer'
         // } else if (state === 'awaiting answer') {
         //     var guess = firstEntity(received_message.nlp, 'message_subject').value;
         //     var correct = flashcards.getAnswer();
