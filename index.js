@@ -6,7 +6,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express().use(bodyParser.json()); // creates express http server
 
-// get access token from environment
+// global variables
+var state = 'idle';
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 // Sets server port and logs message on success
@@ -85,14 +86,18 @@ function handleMessage(sender_psid, received_message) {
 
     // Check if the message contains text
     if (received_message.text) {
-        // Create the payload for a basic text message
-        const greetings = firstEntity(received_message.nlp, 'greetings');
-        if (greetings && greetings.confidence > 0.8) {
-            console.log('detected greeting');
-            response = {
-                "text": 'Hey there! What would you like to study?'
-            }
-        } else if (received_message.attachments) {
+          // Create the payload for a basic text message
+          if (state === 'idle') {
+              // Check for greeting
+              const greetings = firstEntity(received_message.nlp, 'greetings');
+              if (greetings && greetings.confidence > 0.8) {
+                  console.log('detected greeting');
+                  response = {
+                      "text": 'Hey there! What would you like to study?'
+                  }
+              }
+          }   
+      } else if (received_message.attachments) {
 
             // Gets the URL of the message attachment
             let attachment_url = received_message.attachments[0].payload.url;
