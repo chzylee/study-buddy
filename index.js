@@ -114,9 +114,10 @@ async function handleMessage(sender_psid, received_message) {
             state = 'asking questions';
         } else if (state === 'asking questions') {
             var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
-            // handle case of no more cards in deck
+            if (question === 0) {
                 // let user know they ran out with that deck
                 // update state accordingly
+            }
             // ask question
             // change state
         } else if (state === 'state'/*state from above*/) {
