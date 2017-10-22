@@ -119,10 +119,12 @@ async function handleMessage(sender_psid, received_message) {
                 }
                 state = 'need query';
             }
-            response = {
-                "text": question
+            else {
+                response = {
+                    "text": question
+                }
+                state = 'awaiting answer'
             }
-            state = 'awaiting answer'
         } else if (state === 'awaiting answer') {
             var guess = firstEntity(received_message.nlp, 'message_subject').value;
             var correct = flashcards.getAnswer(guess);
