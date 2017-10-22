@@ -187,3 +187,6 @@ function callSendAPI(sender_psid, response) {
 function firstEntity(nlp, name) {
     return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
+
+var parsedSet = [{term: "banana", def: "soft, yellow fruit", image: "i.imgur.com"},
+{term: "anana", def: "hard, spiky yellow fruit", image: "i.imgur.com"}];
