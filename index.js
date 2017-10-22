@@ -90,6 +90,7 @@ async function handleMessage(sender_psid, received_message) {
 
     // Check if the message contains text
     if (received_message.text) {
+        var receivedText = received_message.text;
         // Create the payload for a basic text message
         if (state === 'idle') {
             // Check for greeting
@@ -97,7 +98,6 @@ async function handleMessage(sender_psid, received_message) {
             const greetings = firstEntity(received_message.nlp, 'greetings');
             if (greetings && greetings.confidence > 0.8) {
                 console.log('detected greeting');
-                console.log(received_message.text);
                 response = {
                     "text": 'Hey there! What would you like to study?'
                 }
@@ -114,23 +114,31 @@ async function handleMessage(sender_psid, received_message) {
             };
             state = 'asking questions';
         } else if (state === 'asking questions') {
-            console.log('LENGTH: ' + set.length);
-            if (set.length === 0) {
+            if (receivedText.toLowerCase() === 'stop this set') {
                 response = {
-                    "text": 'That\'s all the terms in this set! What would you like to study next?'
+                    "text": 'Ok! I will stop using this set. What would you like to study next?'
                 }
                 state = 'need query';
             }
             else {
-                var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
-                response = {
-                    "text": question
+                if (set.length === 0) {
+                    response = {
+                        "text": 'That\'s all the terms in this set! What would you like to study next?'
+                    }
+                    state = 'need query';
                 }
-                state = 'awaiting answer'
+                else {
+                    var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
+                    response = {
+                        "text": question
+                    }
+                    state = 'awaiting answer'
+                }
             }
         } else if (state === 'awaiting answer') {
-            var guess = firstEntity(received_message.nlp, 'message_subject').value;
-            if(guess.toLowerCase() === 'stop this set') {
+            // var guess = firstEntity(received_message.nlp, 'message_subject').value;
+            var guess = received_message.text;
+            if (receivedText.toLowerCase() === 'stop this set') {
                 response = {
                     "text": 'Ok! I will stop using this set. What would you like to study next?'
                 }
