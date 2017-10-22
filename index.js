@@ -97,6 +97,7 @@ async function handleMessage(sender_psid, received_message) {
             const greetings = firstEntity(received_message.nlp, 'greetings');
             if (greetings && greetings.confidence > 0.8) {
                 console.log('detected greeting');
+                console.log(received_message.text);
                 response = {
                     "text": 'Hey there! What would you like to study?'
                 }
