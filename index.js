@@ -93,6 +93,8 @@ async function handleMessage(sender_psid, received_message) {
         var receivedText = received_message.text;
         if(receivedText.toLowerCase() === 'bye') {
             response = {
+              "attachment": {
+                "type":"template",
                 "payload": {
                   "template_type":"generic",
                   "elements":{
@@ -101,6 +103,7 @@ async function handleMessage(sender_psid, received_message) {
                   }
                 }
               //  "title": 'Good bye!',
+              }
             }
             state = 'idle';
         } else if (receivedText.toLowerCase() === 'banana') {
