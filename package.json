@@ -6,7 +6,8 @@
   "scripts": {
     "start": "./node_modules/.bin/babel-node index.js",
     "test": "babel-node spec.js",
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "heroku-postbuild": "babel src -d lib"
   },
   "repository": {
     "type": "git",
