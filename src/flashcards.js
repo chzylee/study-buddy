@@ -102,7 +102,7 @@ module.exports = class Flashcards {
             return 1;
         }
         else {
-            return 0;
+            return this.question.a;
         }
     }
 }
