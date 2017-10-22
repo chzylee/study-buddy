@@ -94,7 +94,7 @@ function handleMessage(sender_psid, received_message) {
             "text": 'Hey there! What would you like to study?',
             "askedSearchQuery": true
         }
-    } else if (goodbye && goodbye.confidence > 0.8) {
+    } /*else if (goodbye && goodbye.confidence > 0.8) {
         console.log('detected greeting');
         response = {
             "text": 'Thanks for studying with me!'
