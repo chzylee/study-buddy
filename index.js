@@ -84,7 +84,7 @@ app.get('/webhook', (req, res) => {
 });
 
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+async function handleMessage(sender_psid, received_message) {
     let response;
     console.log('received message: ' + received_message);
 
@@ -110,7 +110,20 @@ function handleMessage(sender_psid, received_message) {
             }
             state = 'need flashcards';
         } else if (state === 'need flashcards') {
-            set = dealer.getCards()
+            set = await dealer.getCards(query);
+            state = 'asking questions';
+        } else if (state === 'asking questions') {
+            var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
+            // handle case of no more cards in deck
+                // let user know they ran out with that deck
+                // update state accordingly
+            // ask question
+            // change state
+        } else if (state === 'state'/*state from above*/) {
+            var guess = ''; // replace '' with the users guess
+            var correct = flashcards.getAnswer();
+            // respond with response from answer check
+            // change state appropriately
         }
     }
     // Sends the response message
