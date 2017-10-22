@@ -128,11 +128,11 @@ async function handleMessage(sender_psid, received_message) {
             var correct = flashcards.getAnswer();
             if (correct === 1){
                 response = {
-                    "text": 'That\'s right\!'
+                    "text": 'That\'s right\! Tell me when to go to the next one.'
                 }
             } else {
                 response = {
-                    "text": 'Sorry, the correct answer is ' + correct + '.'
+                    "text": 'Sorry, the correct answer is ' + correct + '. Tell me when to go to the next one.'
                 }
             }
             state = 'asking questions';
