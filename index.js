@@ -96,73 +96,74 @@ async function handleMessage(sender_psid, received_message) {
                 "text": 'Good bye!'
             }
             state = 'idle';
-        }
-        // Create the payload for a basic text message
-        if (state === 'idle') {
-            // Check for greeting
-            console.log('looking for greeting');
-            const greetings = firstEntity(received_message.nlp, 'greetings');
-            if (greetings && greetings.confidence > 0.8) {
-                console.log('detected greeting');
-                response = {
-                    "text": 'Hey there! What would you like to study?'
-                }
-                state = 'need query';
-            }
-        } else if (state === 'need query') {
-            const query = firstEntity(received_message.nlp, 'message_subject').value;
-            // console.log(query);
-            set = await dealer.getCards(query);
-            console.log('pulling flashcards');
-            response = {
-                "text": 'Okay! I got the ' + query + ' flashcards to study! Tell me when to start.'
-                        + ' Just say "stop this set" if you ever want to stop a deck of cards, or say "bye"'
-                        + ' at any point if you want to stop.'
-            };
-            state = 'asking questions';
-        } else if (state === 'asking questions') {
-            if (receivedText.toLowerCase() === 'stop this set') {
-                response = {
-                    "text": 'Ok! I will stop using this set. What would you like to study next?'
-                }
-                state = 'need query';
-            }
-            else {
-                if (set.length === 0) {
+        } else {
+            // Create the payload for a basic text message
+            if (state === 'idle') {
+                // Check for greeting
+                console.log('looking for greeting');
+                const greetings = firstEntity(received_message.nlp, 'greetings');
+                if (greetings && greetings.confidence > 0.8) {
+                    console.log('detected greeting');
                     response = {
-                        "text": 'That\'s all the terms in this set! What would you like to study next?'
+                        "text": 'Hey there! What would you like to study?'
+                    }
+                    state = 'need query';
+                }
+            } else if (state === 'need query') {
+                const query = firstEntity(received_message.nlp, 'message_subject').value;
+                // console.log(query);
+                set = await dealer.getCards(query);
+                console.log('pulling flashcards');
+                response = {
+                    "text": 'Okay! I got the ' + query + ' flashcards to study! Tell me when to start.'
+                            + ' Just say "stop this set" if you ever want to stop a deck of cards, or say "bye"'
+                            + ' at any point if you want to stop.'
+                };
+                state = 'asking questions';
+            } else if (state === 'asking questions') {
+                if (receivedText.toLowerCase() === 'stop this set') {
+                    response = {
+                        "text": 'Ok! I will stop using this set. What would you like to study next?'
                     }
                     state = 'need query';
                 }
                 else {
-                    var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
-                    response = {
-                        "text": question
+                    if (set.length === 0) {
+                        response = {
+                            "text": 'That\'s all the terms in this set! What would you like to study next?'
+                        }
+                        state = 'need query';
                     }
-                    state = 'awaiting answer'
-                }
-            }
-        } else if (state === 'awaiting answer') {
-            // var guess = firstEntity(received_message.nlp, 'message_subject').value;
-            var guess = received_message.text;
-            if (receivedText.toLowerCase() === 'stop this set') {
-                response = {
-                    "text": 'Ok! I will stop using this set. What would you like to study next?'
-                }
-                state = 'need query';
-            } else {
-                var correct = flashcards.getAnswer(guess);
-                if (correct === 1){
-                    response = {
-                        "text": 'That\'s right\! Tell me when to go to the next one. There are ' + set.length + ' cards left in this set.'
+                    else {
+                        var question = flashcards.getTermQuestion(set); // can be replaced with other kind of questions
+                        response = {
+                            "text": question
+                        }
+                        state = 'awaiting answer'
                     }
+                }
+            } else if (state === 'awaiting answer') {
+                // var guess = firstEntity(received_message.nlp, 'message_subject').value;
+                var guess = received_message.text;
+                if (receivedText.toLowerCase() === 'stop this set') {
+                    response = {
+                        "text": 'Ok! I will stop using this set. What would you like to study next?'
+                    }
+                    state = 'need query';
                 } else {
-                    response = {
-                        "text": 'Sorry, the correct answer is ' + correct + '. Tell me when to go to the next one. There are ' 
-                                + set.length + ' cards left in this set.'
+                    var correct = flashcards.getAnswer(guess);
+                    if (correct === 1){
+                        response = {
+                            "text": 'That\'s right\! Tell me when to go to the next one. There are ' + set.length + ' cards left in this set.'
+                        }
+                    } else {
+                        response = {
+                            "text": 'Sorry, the correct answer is ' + correct + '. Tell me when to go to the next one. There are ' 
+                                    + set.length + ' cards left in this set.'
+                        }
                     }
+                    state = 'asking questions';
                 }
-                state = 'asking questions';
             }
         }
     }
