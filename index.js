@@ -99,11 +99,14 @@ function handleMessage(sender_psid, received_message) {
                 state = 'need query';
             }
         } else if (state === 'need query') {
+            const su = received_message.nlp[name][0];
+            const suone = received_message.nlp[name];
             const subZero = firstEntity(received_message.nlp, 'message_subject');
             const testZero = zeroEntity(received_message.nlp, 'message_subject');
-            console.log('detected subject zero is ' + subZero + ' and testZero is ' + testZero);
+            const testZeroOne = two(received_message.nlp, 'message_subject');
+            console.log('su is ' + su + ', suone is ' + suone + ', detected subject zero is ' + subZero + ', testZero is ' + testZero + ', and testZeroOne is ' + testZeroOne);
             response = {
-              "text": 'You wish to study ' + subZero + ' or ' + testZero
+              "text": 'You wish to study ' + subZero + ' or ' + testZero + ' or ' + testZeroOne + ' or ' testZeroOne.body
             }
             state = 'idle';
         }
@@ -191,4 +194,8 @@ function firstEntity(nlp, name) {
 
 function zeroEntity(nlp, name) {
     return nlp && nlp.entities && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+}
+
+function two(nlp, name) {
+    return nlp && nlp.entities && nlp.entities && nlp.entities[name];
 }
