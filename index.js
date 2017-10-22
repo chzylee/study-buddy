@@ -93,7 +93,7 @@ async function handleMessage(sender_psid, received_message) {
         var receivedText = received_message.text;
         if(receivedText.toLowerCase() === 'bye') {
             response = {
-                "text": 'Good bye!'
+                "text": 'Good bye!',
                 "attachment": {
                   "type": "image",
                   "payload":{
