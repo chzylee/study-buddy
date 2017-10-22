@@ -9,6 +9,8 @@ const app = express().use(bodyParser.json()); // creates express http server
 // global variables
 var state = 'idle';
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const dealer = require('./lib/dealer');
+const flashcards = require('./flashcards');
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
