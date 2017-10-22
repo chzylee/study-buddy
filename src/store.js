@@ -11,7 +11,7 @@ module.exports = class Store {
 
     // count the use of given flashcard set
     countSetUse(id) {
-        if(this.setCounts.get(id) == undefined) {
+        if (this.setCounts.get(id) == undefined) {
             this.setCounts.set(id, 1);
         } else {
             this.setCounts.set(id, this.setCounts.get(id) + 1);
