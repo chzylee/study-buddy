@@ -102,7 +102,7 @@ function handleMessage(sender_psid, received_message) {
             const subZero = firstEntity(received_message.nlp, 'message_subject');
             console.log(subZero);
             response = {
-              "text": 'Ok, let\'s study ' + subZero.value 
+              "text": 'Ok, let\'s study ' + subZero.value + "\!"
             }
             state = 'idle';
         }
