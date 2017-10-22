@@ -93,17 +93,7 @@ async function handleMessage(sender_psid, received_message) {
         var receivedText = received_message.text;
         if(receivedText.toLowerCase() === 'bye') {
             response = {
-              "attachment": {
-                "type":"template",
-                "payload": {
-                  "template_type":"generic",
-                  "elements":{
-                    "title":"Good bye!",
-                    "image_url":"http://www.sherv.net/cm/emo/funny/2/big-dancing-banana-smiley-emoticon.gif"
-                  }
-                }
-              //  "title": 'Good bye!',
-              }
+              "text": 'Good bye!'
             }
             state = 'idle';
         } else if (receivedText.toLowerCase() === 'banana') {
