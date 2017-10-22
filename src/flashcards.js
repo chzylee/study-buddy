@@ -72,7 +72,6 @@ module.exports = class Flashcards {
 
     // return question about the image on the card
     getImageQuestion(set) {
-        // var set = getCurrentSet();
         if (set.length === 0) {
             return 0;
         }
@@ -103,7 +102,7 @@ module.exports = class Flashcards {
             return 1;
         }
         else {
-            return this.question.a
+            return 0;
         }
     }
 }
