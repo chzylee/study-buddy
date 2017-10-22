@@ -72,7 +72,8 @@ module.exports = class Flashcards {
 
     // return question about the image on the card
     getImageQuestion(set) {
-        if (set.length === 0) {
+        console.log(set.length);
+        if (set.length == 0) {
             return 'done';
         }
         this.question = {
