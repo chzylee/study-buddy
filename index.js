@@ -10,7 +10,7 @@ const app = express().use(bodyParser.json()); // creates express http server
 var state = 'idle';
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const dealer = require('./lib/dealer');
-const _flashcards = require('./flashcards');
+const _flashcards = require('./lib/flashcards');
 var flashcards = new _flashcards();
 var set = [];
 
