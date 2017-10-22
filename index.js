@@ -96,6 +96,15 @@ async function handleMessage(sender_psid, received_message) {
                 "text": 'Good bye!'
             }
             state = 'idle';
+        } else if (receivedText.toLowerCase() === 'banana') {
+            response = {
+              "attachment": {
+                "type": "image",
+                "payload":{
+                  "url":"http://www.sherv.net/cm/emo/funny/2/big-dancing-banana-smiley-emoticon.gif"
+                }
+              }
+            }
         } else {
             // Create the payload for a basic text message
             if (state === 'idle') {
@@ -158,7 +167,7 @@ async function handleMessage(sender_psid, received_message) {
                         }
                     } else {
                         response = {
-                            "text": 'Sorry, the correct answer is ' + correct + '. Tell me when to go to the next one. There are ' 
+                            "text": 'Sorry, the correct answer is ' + correct + '. Tell me when to go to the next one. There are '
                                     + set.length + ' cards left in this set.'
                         }
                     }
