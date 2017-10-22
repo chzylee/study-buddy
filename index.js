@@ -10,7 +10,9 @@ const app = express().use(bodyParser.json()); // creates express http server
 var state = 'idle';
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const dealer = require('./lib/dealer');
-const flashcards = require('./flashcards');
+const _flashcards = require('./flashcards');
+var flashcards = new _flashcards();
+var set = [];
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -101,12 +103,14 @@ function handleMessage(sender_psid, received_message) {
                 state = 'need query';
             }
         } else if (state === 'need query') {
-            const subZero = firstEntity(received_message.nlp, 'message_subject');
+            const query = firstEntity(received_message.nlp, 'message_subject').value;
             console.log(subZero);
             response = {
-              "text": 'Ok, let\'s study ' + subZero.value + "\!"
+              "text": 'Ok, let\'s study ' + query + "\!"
             }
-            state = 'idle';
+            state = 'need flashcards';
+        } else if (state === 'need flashcards') {
+            set = dealer.getCards()
         }
     }
     // Sends the response message
