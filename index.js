@@ -91,6 +91,12 @@ async function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
     if (received_message.text) {
         var receivedText = received_message.text;
+        if(receivedText.toLowerCase() === 'bye') {
+            response = {
+                "text": 'Good bye!'
+            }
+            state = 'idle';
+        }
         // Create the payload for a basic text message
         if (state === 'idle') {
             // Check for greeting
@@ -110,7 +116,8 @@ async function handleMessage(sender_psid, received_message) {
             console.log('pulling flashcards');
             response = {
                 "text": 'Okay! I got the ' + query + ' flashcards to study! Tell me when to start.'
-                        + ' Just say "stop this set" if you ever want to stop a deck of cards'
+                        + ' Just say "stop this set" if you ever want to stop a deck of cards, or say "bye"'
+                        + ' at any point if you want to stop.'
             };
             state = 'asking questions';
         } else if (state === 'asking questions') {
