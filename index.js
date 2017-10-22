@@ -99,8 +99,8 @@ function handleMessage(sender_psid, received_message) {
                 state = 'need query';
             }
         } else if (state === 'need query') {
-            const su = received_message.nlp[name][0];
-            const suone = received_message.nlp[name];
+            const su = received_message.nlp[message_subject][0];
+            const suone = received_message.nlp[message_subject];
             const subZero = firstEntity(received_message.nlp, 'message_subject');
             const testZero = zeroEntity(received_message.nlp, 'message_subject');
             const testZeroOne = two(received_message.nlp, 'message_subject');
