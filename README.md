@@ -11,9 +11,13 @@ Quizlet study buddy to quiz you on Facebook Messenger using flashcard decks from
 
 ## Purpose
 
+Look at our [package.json](./package.json)
+
 <a href="using"></a>
 
 ## Using Flashcards
+
+Start via babel with `babel-node index.js`
 
 <a href="changing"></a>
 
