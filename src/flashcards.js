@@ -49,7 +49,7 @@ module.exports = class Flashcards {
             return 0;
         }
         this.question = { // populate answer data with info from set
-            q: 'What is the definition of this term: ' + set[0].term + '?',
+            q: 'What is the definition of the term: ' + set[0].term + '?',
             a: set[0].definition
         }
         set = set.shift(); // pop card off set
@@ -103,7 +103,7 @@ module.exports = class Flashcards {
             return 1;
         }
         else {
-            return 0;
+            return this.question.a
         }
     }
 }
