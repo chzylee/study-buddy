@@ -99,7 +99,7 @@ function handleMessage(sender_psid, received_message) {
                 state = 'need query';
             }
         } else if (state === 'need query') {
-            const subject = subjectEntity(received_message.nlp, 'message_subject');
+            const subject = firstEntity(received_message.nlp, 'message_subject');
             console.log('subject');
             response = {
               "text": 'You wish to study ' + subject
